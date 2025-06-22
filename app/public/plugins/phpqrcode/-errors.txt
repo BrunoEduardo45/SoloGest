@@ -1,0 +1,40 @@
+2022-02-10 23:02:05: <br />
+<b>Warning</b>:  strlen() expects parameter 1 to be string, array given in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrsplit.php</b> on line <b>250</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>594</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>688</b><br />
+2022-02-10 23:02:36: <br />
+<b>Warning</b>:  strlen() expects parameter 1 to be string, array given in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrsplit.php</b> on line <b>250</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>594</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>688</b><br />
+2022-02-10 23:03:41: <br />
+<b>Warning</b>:  strlen() expects parameter 1 to be string, array given in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrsplit.php</b> on line <b>250</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>594</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>688</b><br />
+2022-02-10 23:05:16: <br />
+<b>Warning</b>:  strlen() expects parameter 1 to be string, array given in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrsplit.php</b> on line <b>250</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>522</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>594</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>D:\laragon\www\meucartao\painel\plugins\phpqrcode\qrinput.php</b> on line <b>688</b><br />

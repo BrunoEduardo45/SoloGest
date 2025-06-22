@@ -1,0 +1,53 @@
+{
+    "name": "Fiel App",
+    "short_name": "Fiel App",
+    "theme_color": "#343a40",
+    "background_color": "#343a40",
+    "display": "minimal-ui",
+    "orientation": "portrait",
+    "start_url": "/?source=pwa",
+    "id": "/?source=pwa",
+    "scope": "/",
+    "icons": [
+      {
+        "src": "./img/icons/android-launchericon-192-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "./img/icons/android-launchericon-512-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "dir": "auto",
+    "lang": "pt",
+    "categories": [
+      "social"
+    ],
+    "description": "Saiba tudo o que está acontecendo em sua igreja na palma de sua mão.",
+    "display_override": [
+      "minimal-ui",
+      "window-controls-overlay"
+    ],
+    "launch_handler": {
+      "client_mode": "focus-existing"
+    },
+    "shortcuts": [
+      {
+        "name": "Fidadelidade",
+        "url": "/appFidelidade"
+      },
+      {
+        "name": "Torre de Oração",
+        "url": "/appTorreOracao"
+      },
+      {
+        "name": "Campanha",
+        "url": "/appCampanha"
+      }
+    ],
+    "edge_side_panel": {
+      "preferred_width": 425
+    }
+  }
