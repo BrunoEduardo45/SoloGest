@@ -10,7 +10,7 @@ $userData = selecionarDoBanco("usuarios", "*", "usu_id =" . $IdUser, [], ["inner
             <form id="formUsu" method="post">
                 <div class="row">
                     <div class="col-md-9">
-                        <div class="card card-outline card-primary">
+                        <div class="card card-outline card-success">
                             <div class="card-body">
                                 <h3>Dados do Usuário</h3>
                                 <hr>
@@ -61,15 +61,15 @@ $userData = selecionarDoBanco("usuarios", "*", "usu_id =" . $IdUser, [], ["inner
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer text-right">
+                            <div class="card-footer text-right p-2">
                                 <input type="hidden" id="Acao" name="Acao" value="atualizar">
-                                <button type="submit" class="btn btn-primary my-2">Salvar <i class="fa fa-save ml-2"></i></button>
+                                <button type="submit" class="btn btn-success w-100">Salvar <i class="fa fa-save ml-2"></i></button>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3">
-                        <div class="card card-outline card-primary">
+                        <div class="card card-outline card-success">
                             <div class="card-header">
                                 <h5 for="cadastro" class="m-0">Imagem de Perfil</h5>
                             </div>
@@ -79,8 +79,8 @@ $userData = selecionarDoBanco("usuarios", "*", "usu_id =" . $IdUser, [], ["inner
                                 <img src="" id="imagemPreview" name="imagemPreview" class="img-fluid w-100 rounded-circle">
                                 <img src="<?php echo $userData['usu_imagem_url'] ?>" id="imagemBanco" class="img-fluid w-100 rounded-circle">
                             </div>
-                            <div class="card-footer">
-                                <label class="btn btn-primary btn-block">Upload <i class="fa fa-upload ml-2"></i>
+                            <div class="card-footer p-2">
+                                <label class="btn btn-success btn-block m-0">Upload <i class="fa fa-upload ml-2"></i>
                                     <input type="file" id="imagem" name="image" class="image" hidden>
                                 </label>
                             </div>

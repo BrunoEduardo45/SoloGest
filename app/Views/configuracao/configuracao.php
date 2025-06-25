@@ -12,8 +12,7 @@ foreach ($config as $values) {
   $siteEmpresa    = (isset($values['sis_url_empresa']) ? $values['sis_url_empresa'] : "");
   $emailEmpresa   = (isset($values['sis_email']) ? $values['sis_email'] : "");
   $corPrimaria    = (isset($values['sis_cor_primaria']) ? $values['sis_cor_primaria'] : "");
-  $corSecundaria  = (isset($values['sis_cor_secundaria']) ? $values['sis_cor_secundaria'] : "");
-}
+  $corSecundaria  = (isset($values['sis_cor_secundaria']) ? $values['sis_cor_secundaria'] : "");}
 
 ?>
 
@@ -33,7 +32,7 @@ foreach ($config as $values) {
       <div class="row">
         <div class="col-md-8">
           <form id="form" method="post">
-            <div class="card card-secondary">
+            <div class="card">
               <div class="card-header ">
                 <h3 class="card-title">Configurações</h3>
               </div>
@@ -93,17 +92,18 @@ foreach ($config as $values) {
                       </span>
                     </div>
                   </div>
+                 
                 </div>
               </div>
-              <div class="card-footer text-right border-top">
+              <div class="card-footer text-right border-top p-2">
                 <input type="hidden" id="Acao" name="Acao" value="<?php echo $nomeSite != '' ? 'atualizar' : 'salvar' ?>">
-                <button id="cadastrarOferta" type="submit" class="btn btn-primary my-2">Salvar Configurações <i class="fa fa-plus ml-2"></i></button>
+                <button id="cadastrarOferta" type="submit" class="btn btn-success w-100">Salvar Configurações <i class="fa fa-plus ml-2"></i></button>
               </div>
             </div>
           </form>
         </div>
         <div class="col-md-4">
-          <div class="card card-secondary">
+          <div class="card">
             <div class="card-header">
               <h3 class="card-title">Imagem do Sistema</h3>
             </div>
@@ -118,13 +118,13 @@ foreach ($config as $values) {
                 $URL = $list[0]['sis_url_logo'] ?? "";
                 ?>
                 <?php if ($URL != "") { ?>
-                  <img class="w-100 rounded p-3" style="background-color: #343a40" src="<?php echo $baseUrl . $URL ?>" alt="<?php echo $nome ?>">
+                  <img class="w-100 rounded p-3" style="background-color: <?= $corPrimaria ?>" src="<?php echo $baseUrl . $URL ?>" alt="<?php echo $nome ?>">
                 <?php } ?>
               </div>
             </div>
-            <div class="card-footer border-top">
+            <div class="card-footer border-top p-2">
                 <form method="post">
-                  <label class="btn btn-primary btn-block m-0 my-2">Upload Imagem <i class="fa fa-upload ml-2"></i>
+                  <label class="btn btn-success btn-block m-0">Upload Imagem <i class="fa fa-upload ml-2"></i>
                     <input type="file" name="image" class="image" hidden>
                   </label>
                 </form>
@@ -197,6 +197,9 @@ foreach ($config as $values) {
         if (data.success != "") {
           Notiflix.Loading.Remove();
           Notiflix.Notify.Success(data.success);
+          setTimeout(function() {
+            location.reload();
+          }, 2000);
         } else {
           Notiflix.Notify.Failure(data.error);
           Notiflix.Loading.Remove();

@@ -34,10 +34,10 @@ class UsuarioController extends Actions
 
             date_default_timezone_set('America/Sao_Paulo');
 
-            $cpf = $_POST['cpf'];
+            $email = $_POST['email'];
             $senha = $_POST['senha'];
 
-            $sql = selecionarDoBanco('usuarios', '*', 'usu_cpf_cnpj = :cpf', [':cpf' => $cpf]);
+            $sql = selecionarDoBanco('usuarios', '*', 'usu_email = :email', [':email' => $email]);
             $total = count($sql);
 
             if ($total > 0) {

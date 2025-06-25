@@ -12,7 +12,7 @@ $encryptionKey = ";&%~mvLfd[QeSxI";
 // DB Conection ------------------------------------------------------------
 global $pdo;
 $host       = 'localhost';
-$db         = 'bd_agromap';
+$db         = 'bd_sologest';
 $login      = 'root';
 $password   = '';
 
@@ -36,6 +36,7 @@ try {
         $versao             = (isset($values['sis_versao']) ? $values['sis_versao'] : "");
         $corPrimaria        = (isset($values['sis_cor_primaria']) ? $values['sis_cor_primaria'] : "");
         $corSecundaria      = (isset($values['sis_cor_secundaria']) ? $values['sis_cor_secundaria'] : "");
+        $corBackground      = (isset($values['sis_cor_bg']) ? $values['sis_cor_bg'] : "");
     }
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

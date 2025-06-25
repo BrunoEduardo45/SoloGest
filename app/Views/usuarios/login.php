@@ -17,6 +17,7 @@ include $baseDir . "/../../utils/Database.php";
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Fiel App">
     <link rel="apple-touch-icon" href="<?php echo $baseUrl ?>app/public/img/icons/ios.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/app/public/imagens/favicon.png">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="<?php echo $baseUrl ?>app/public/plugins/fontawesome-free/css/all.min.css">
@@ -25,13 +26,18 @@ include $baseDir . "/../../utils/Database.php";
     <link rel="stylesheet" href="<?php echo $baseUrl ?>app/public/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page" style="background-image: linear-gradient(<?php echo  $corSecundaria . ',' . $corPrimaria ?>);">
-    <div class="login-box">
+<body class="hold-transition login-page" style="
+    background-image: linear-gradient(<?php echo  $corSecundaria . ',' . $corPrimaria ?>), url('<?php echo $baseUrl ?>app/public/imagens/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+">    <div class="login-box">
         <div class="card rounded">
             <div class="card-header text-center" style="background: <?php echo $corPrimaria ?>">
                 <?php
                     if ($urlLogo) {
-                        echo '<img src="' . $baseUrl . $urlLogo . '" alt="' . $nomeSistema . '" class="p-3">';
+                        echo '<img src="' . $baseUrl . $urlLogo . '" alt="' . $nomeSistema . '" class="p-3 w-75">';
                     } else {
                         echo '<h2 class="text-light">' . $nomeSistema . '</h2>';
                     }
@@ -40,9 +46,8 @@ include $baseDir . "/../../utils/Database.php";
             <div class="card-body  login-card-body">
                 <h4 class="login-box-msg">Faça o seu login a baixo!</h4>
                 <form id="login" action="" method="post">
-                    <!-- <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"> -->
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="Digite seu CPF" value="" required>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Digite seu Email" value="" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-hashtag"></span>
@@ -119,7 +124,7 @@ include $baseDir . "/../../utils/Database.php";
             type: "POST",
             url: "<?php echo $baseUrl ?>login",
             data: {
-                cpf: $("#cpf").val().replace(/\D/g, ''),
+                email: $("#email").val(),
                 senha: $("#senha").val(),
             },
             success: function(data) {
@@ -228,4 +233,5 @@ include $baseDir . "/../../utils/Database.php";
             });
         });
     });
+
 </script>

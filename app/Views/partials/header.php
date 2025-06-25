@@ -34,9 +34,33 @@ if (!$IdUser) {
 }
 
 $estadosIBGE = [
-    '12' => 'AC', '27' => 'AL', '13' => 'AM', '16' => 'AP', '29' => 'BA', '23' => 'CE', '53' => 'DF', '32' => 'ES', '52' => 'GO', '21' => 'MA',
-    '31' => 'MG', '50' => 'MS', '51' => 'MT', '15' => 'PA', '25' => 'PB', '26' => 'PE', '22' => 'PI', '41' => 'PR', '33' => 'RJ', '24' => 'RN',
-    '43' => 'RS', '11' => 'RO', '14' => 'RR', '42' => 'SC', '28' => 'SE', '35' => 'SP', '17' => 'TO'
+  '12' => 'AC',
+  '27' => 'AL',
+  '13' => 'AM',
+  '16' => 'AP',
+  '29' => 'BA',
+  '23' => 'CE',
+  '53' => 'DF',
+  '32' => 'ES',
+  '52' => 'GO',
+  '21' => 'MA',
+  '31' => 'MG',
+  '50' => 'MS',
+  '51' => 'MT',
+  '15' => 'PA',
+  '25' => 'PB',
+  '26' => 'PE',
+  '22' => 'PI',
+  '41' => 'PR',
+  '33' => 'RJ',
+  '24' => 'RN',
+  '43' => 'RS',
+  '11' => 'RO',
+  '14' => 'RR',
+  '42' => 'SC',
+  '28' => 'SE',
+  '35' => 'SP',
+  '17' => 'TO'
 ];
 
 ?>
@@ -56,6 +80,7 @@ $estadosIBGE = [
   <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.min.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="/app/public/imagens/favicon.png">
 
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo $baseUrl ?>app/public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -63,25 +88,14 @@ $estadosIBGE = [
   <link rel="stylesheet" href="<?php echo $baseUrl ?>app/public/css/adminlte.css">
 
   <style>
-    .btn-primary {
+    .btn-success {
       background-color: <?php echo $corPrimaria ?> !important;
       border-color: <?php echo $corPrimaria ?> !important;
     }
 
-    .card-primary.card-outline {
-      border-top: 3px solid <?php echo $corPrimaria ?> !important;
-    }
-
-    .form-control-sidebar {
-      background-color: rgb(214, 214, 214);
-      border: 1px solid rgb(214, 214, 214);
-      color: black;
-    }
-
-    .card-header {
-      background-color:#f7f7f7 !important;
-      color: black !important;
-      font-weight: bold !important;
+    .btn-success:hover {
+      background-color: <?php echo $corSecundaria ?> !important;
+      border-color: <?php echo $corSecundaria ?> !important;
     }
 
   </style>
