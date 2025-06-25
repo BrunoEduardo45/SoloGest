@@ -24,42 +24,42 @@
                 <hr style="border-top: 1px solid <?= $corSecundaria . '50' ?>; margin: 10px 0;">
 
                 <li class="nav-item">
-                    <a href="<?php echo $baseUrl ?>producao" class="nav-link">
+                    <a href="<?php echo $baseUrl ?>lista-producao" class="nav-link">
                         <i class="nav-icon fas fa-tractor"></i>
                         <p>Gestão da Produção</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo $baseUrl ?>projetos" class="nav-link">
+                    <a href="<?php echo $baseUrl ?>lista-projetos" class="nav-link">
                         <i class="nav-icon fas fa-project-diagram"></i>
                         <p>Gestão de Projetos</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo $baseUrl ?>pedidos" class="nav-link">
+                    <a href="<?php echo $baseUrl ?>lista-pedidos" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Pedidos</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo $baseUrl ?>clientes" class="nav-link">
+                    <a href="<?php echo $baseUrl ?>lista-clientes" class="nav-link">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>Clientes</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo $baseUrl ?>financeiro" class="nav-link">
+                    <a href="<?php echo $baseUrl ?>fluxo-caixa" class="nav-link">
                         <i class="nav-icon fas fa-dollar-sign"></i>
                         <p>Fluxo de Caixa</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?php echo $baseUrl ?>compras" class="nav-link">
+                    <a href="<?php echo $baseUrl ?>lista-compras" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>Requisições de Compra</p>
                     </a>
@@ -74,25 +74,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>fazendas" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>lista-fazendas" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Fazendas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>tecnicos" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>lista-responsaveis" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Técnicos/Responsáveis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>produtos" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>lista-produtos" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Produtos e Insumos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>cultivos" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>lista-cultivos" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Tipos de Cultivo</p>
                             </a>
@@ -107,13 +107,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>relatorio-producao" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>relatorio-geraldeproducao" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Geral de Produção</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>relatorio-financeiro" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>relatorio-financeiroporfazenda" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Financeiro por Fazenda</p>
                             </a>
@@ -125,21 +125,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>relatorio-pedidos" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>relatorio-pedidosporcliente" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Pedidos por Cliente</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>relatorio-projetos" class="nav-link">
+                            <a href="<?php echo $baseUrl ?>relatorio-entregaseprojetos" class="nav-link">
                                 <i class="nav-icon fas fa-caret-right"></i>
                                 <p>Projetos e Entregas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo $baseUrl ?>relatorio-diagnostico" class="nav-link">
-                                <i class="nav-icon fas fa-caret-right"></i>
-                                <p>Diagnóstico de Plantas</p>
                             </a>
                         </li>
                     </ul>

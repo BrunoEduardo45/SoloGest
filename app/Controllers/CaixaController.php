@@ -1,13 +1,13 @@
 <?php
 
-global $tabela;     $tabela = 'produtor';
-global $sigla;      $sigla = 'prod';
+global $tabela; $tabela = 'caixa';
+global $sigla; $sigla = 'caixa';
 
-class ProdutoresController extends Actions 
+class CaixaController extends Actions
 {
     public function Listar()
     {
-        loadView('listaProdutores', "produtores",[]);
+        loadView('fluxoCaixa', "caixa", []);
     }
 
     public function Cadastrar()
@@ -22,15 +22,15 @@ class ProdutoresController extends Actions
         global $tabela;
         global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
-        $dados = selecionarDoBanco($tabela, '*', $sigla.'_id = :id', [':id' => $id]);
+        $dados = selecionarDoBanco($tabela, '*', $sigla . '_id = :id', [':id' => $id]);
         header('Content-type: application/json');
-        echo json_encode($dados);
+        echo json_encode($dados[0]);
     }
-    
+
     public function Atualizar()
     {
         global $tabela;
-        global $sigla; 
+        global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
         $dados = $_POST['dados'];
 
@@ -41,25 +41,10 @@ class ProdutoresController extends Actions
     public function Deletar()
     {
         global $tabela;
-        global $sigla; 
+        global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
 
         $where = $sigla . "_id = " . $id;
         deletarDoBanco($tabela, $where);
     }
-
-    public function ListarProdutores()
-    {
-        $id = (isset($_POST['grupo_id']) ? $_POST['grupo_id'] : "");
-        $dados = selecionarDoBanco(
-            'usuarios',
-            '*',
-            'prod_grupo_id = :id',
-            [':id' => $id],
-            ['inner join produtor on prod_usu_id = usu_id']
-        );
-        header('Content-type: application/json');
-        echo json_encode($dados);
-    }
 }
-

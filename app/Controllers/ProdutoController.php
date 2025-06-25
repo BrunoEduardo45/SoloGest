@@ -1,15 +1,13 @@
 <?php
 
-global $tabela;
-$tabela = 'grupos';
-global $sigla;
-$sigla = 'gru';
+global $tabela; $tabela = 'produtos';
+global $sigla; $sigla = 'prod';
 
-class GruposController extends Actions
+class ProdutoController extends Actions
 {
     public function Listar()
     {
-        loadView('listaGrupos', "grupos", []);
+        loadView('listaProdutos', "produtos", []);
     }
 
     public function Cadastrar()
@@ -48,12 +46,5 @@ class GruposController extends Actions
 
         $where = $sigla . "_id = " . $id;
         deletarDoBanco($tabela, $where);
-    }
-
-    public function RemoverProdutor()
-    {
-        $produtorId = $_POST['produtor_id'];
-        $grupoId = $_POST['grupo_id'];
-        deletarDoBanco('produtor', 'prod_usu_id = ' . $produtorId . ' AND prod_grupo_id = ' . $grupoId);
     }
 }

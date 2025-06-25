@@ -1,15 +1,13 @@
 <?php
 
-global $tabela;     $tabela = 'categoria';
-global $sigla;      $sigla = 'cat';
+global $tabela; $tabela = 'cultivos';
+global $sigla; $sigla = 'cult';
 
-class CategoriaController extends Actions 
+class CultivosController extends Actions
 {
     public function Listar()
     {
-        global $tabela;
-
-        loadView('listaCategorias', $tabela,[]);
+        loadView('listaCultivos', "cultivo", []);
     }
 
     public function Cadastrar()
@@ -24,22 +22,15 @@ class CategoriaController extends Actions
         global $tabela;
         global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
-        $dados = selecionarDoBanco($tabela, '*', $sigla.'_id = :id', [':id' => $id]);
-        if ($dados !== null) {
-            $data = [
-                'id'     => $dados[0]['cat_id'],
-                'nome'   => $dados[0]['cat_nome'],
-                'status' => $dados[0]['cat_status'],
-                'acao'   => 'editar'
-            ];
-            header('Content-type: application/json');
-            echo json_encode($data);
-        }
+        $dados = selecionarDoBanco($tabela, '*', $sigla . '_id = :id', [':id' => $id]);
+        header('Content-type: application/json');
+        echo json_encode($dados[0]);
     }
+
     public function Atualizar()
     {
         global $tabela;
-        global $sigla; 
+        global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
         $dados = $_POST['dados'];
 
@@ -50,7 +41,7 @@ class CategoriaController extends Actions
     public function Deletar()
     {
         global $tabela;
-        global $sigla; 
+        global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
 
         $where = $sigla . "_id = " . $id;

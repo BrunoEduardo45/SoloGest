@@ -1,43 +1,31 @@
 <?php
-    // Dados fictícios para ilustrar
-    $produtores = [
-        ['prod_id' => 1, 'prod_nome' => 'Produtor 1', 'area_total' => 120.5, 'volume_total' => 2500],
-        ['prod_id' => 2, 'prod_nome' => 'Produtor 2', 'area_total' => 90.3, 'volume_total' => 1800],
-        ['prod_id' => 3, 'prod_nome' => 'Produtor 3', 'area_total' => 200.0, 'volume_total' => 3500]
-    ];
-
-    // Filtro de data
-    $dataInicial = isset($_GET['dataInicial']) ? $_GET['dataInicial'] : "";
-    $dataFinal = isset($_GET['dataFinal']) ? $_GET['dataFinal'] : "";
-    $produtorId = isset($_GET['produtorId']) ? $_GET['produtorId'] : "";
-
-    // Filtro de grupo - opcional para mostrar todos os produtores
-    $grupoId = isset($_GET['grupoId']) ? $_GET['grupoId'] : "";
+// Consultas e variaveis
 ?>
 
 <div class="content-wrapper">
     <section class="content pt-4">
         <div class="container-fluid">
-            
+
             <!-- Pesquisa de filtro -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card card-outline card-primary">
+                    <h1>Relatório Geral de Produção</h1>
+                    <div class="card card-outline card-success">
                         <div class="card-body">
-                            <h3>Consulta de Relatório por Produtor</h3>
+                            <h3>Consulta</h3>
                             <hr>
                             <form id="searchRelatorio" method="get">
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label for="produtor">Produtor</label>
                                             <select name="produtorId" id="produtor" class="form-control">
                                                 <option value="">Selecione o Produtor</option>
-                                                <?php foreach ($produtores as $produtor) { ?>
+                                                <!-- <?php foreach ($produtores as $produtor) { ?>
                                                     <option value="<?php echo $produtor['prod_id']; ?>" <?php echo ($produtor['prod_id'] == $produtorId) ? 'selected' : ''; ?>>
                                                         <?php echo $produtor['prod_nome']; ?>
                                                     </option>
-                                                <?php } ?>
+                                                <?php } ?> -->
                                             </select>
                                         </div>
                                     </div>
@@ -63,7 +51,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label class="form-label" for="pesquisar"></label>
-                                            <button type="submit" id="pesquisar" name="pesquisar" class="btn btn-primary btn-block">Pesquisar</button>
+                                            <button type="submit" id="pesquisar" name="pesquisar" class="btn btn-success btn-block">Pesquisar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -76,36 +64,38 @@
             <!-- Relatório -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card card-outline card-primary">
+                    <div class="card card-outline card-success">
                         <div class="card-body">
-                            <h3>Relatório de Produção por Produtor</h3>
-                            <div class="table-responsive">
-                                <table id="relatorioTable" class="table table-hover table-sm w-100">
-                                    <thead>
-                                        <tr>
-                                            <th>Produtor</th>
-                                            <th>Área Produzida (hectares)</th>
-                                            <th>Volume Produzido (kg)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (count($produtores) > 0) {
-                                            foreach ($produtores as $produtor) {
-                                                ?>
+                            <h3>Resultado</h3>
+                            <?php
+                            $produtores = [];
+                            if (count($produtores) > 0) {
+                            ?>
+                                <div class="table-responsive">
+                                    <table id="relatorioTable" class="table table-hover table-sm w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Produtor</th>
+                                                <th>Área Produzida (hectares)</th>
+                                                <th>Volume Produzido (kg)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($produtores as $produtor) { ?>
                                                 <tr>
                                                     <td><?php echo $produtor['prod_nome']; ?></td>
                                                     <td><?php echo number_format($produtor['area_total'], 2, ',', '.'); ?></td>
                                                     <td><?php echo number_format($produtor['volume_total'], 2, ',', '.'); ?></td>
                                                 </tr>
-                                            <?php }
-                                        } else { ?>
-                                            <tr>
-                                                <td colspan="3" class="text-center">Nenhum dado encontrado para este produtor</td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php } else { ?>
+                                <tr>
+                                    <td colspan="3" class="text-center">Nenhum dado encontrado para este produtor</td>
+                                </tr>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -126,7 +116,7 @@
         var dataInicio = $('#dataInicial').val();
         var dataFim = $('#dataFinal').val();
 
-        var url = "/imprimir-porgrupo?" +
+        var url = "/imprimir-geraldeproducao?" +
             "produtorId=" + encodeURIComponent(produtor) +
             "&dataInicial=" + encodeURIComponent(dataInicio) +
             "&dataFinal=" + encodeURIComponent(dataFim);

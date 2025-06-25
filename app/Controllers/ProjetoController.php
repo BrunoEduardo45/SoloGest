@@ -1,14 +1,13 @@
 <?php
 
-global $tabela;     $tabela = 'situacao';
-global $sigla;      $sigla = 'sit';
+global $tabela; $tabela = 'projetos';
+global $sigla; $sigla = 'caixa';
 
-class SituacaoController extends Actions 
+class ProjetoController extends Actions
 {
     public function Listar()
     {
-        global $tabela;
-        loadView('listaSituacao', $tabela,[]);
+        loadView('gestaoProjetos', "gestaoProjetos", []);
     }
 
     public function Cadastrar()
@@ -23,22 +22,15 @@ class SituacaoController extends Actions
         global $tabela;
         global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
-        $dados = selecionarDoBanco($tabela, '*', $sigla.'_id = :id', [':id' => $id]);
-        if ($dados !== null) {
-            $data = [
-                'id'     => $dados[0]['sit_id'],
-                'nome'   => $dados[0]['sit_nome'],
-                'status' => $dados[0]['sit_status'],
-                'acao'   => 'editar'
-            ];
-            header('Content-type: application/json');
-            echo json_encode($data);
-        }
+        $dados = selecionarDoBanco($tabela, '*', $sigla . '_id = :id', [':id' => $id]);
+        header('Content-type: application/json');
+        echo json_encode($dados[0]);
     }
+
     public function Atualizar()
     {
         global $tabela;
-        global $sigla; 
+        global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
         $dados = $_POST['dados'];
 
@@ -49,7 +41,7 @@ class SituacaoController extends Actions
     public function Deletar()
     {
         global $tabela;
-        global $sigla; 
+        global $sigla;
         $id = (isset($_POST['id']) ? $_POST['id'] : "");
 
         $where = $sigla . "_id = " . $id;

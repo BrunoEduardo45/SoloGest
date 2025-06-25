@@ -2,7 +2,7 @@
     <section class="content pt-4">
         <div class="container-fluid">
             <div class="col-md-12">
-                <div class="card card-outline card-primary">
+                <div class="card card-outline card-success">
                     <div class="card-body">
                         <h3>Cadastrar Tipo de Usuário</h3>
                         <hr>
@@ -28,7 +28,7 @@
                                     <div class="col-lg-2">
                                         <div class="form-group mt-2">
                                             <label class="form-label" for="cadastro"></label>
-                                            <button type="submit" id="cadastro" name="cadastro" class="btn btn-primary btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
+                                            <button type="submit" id="cadastro" name="cadastro" class="btn btn-success btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
@@ -44,9 +44,8 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="card card-outline card-primary">
+                <div class="card card-outline card-success">
                     <div class="card-body">
-                        <br>
                         <h3>Tipos de Usuários Cadastrados</h3>
                         <hr>
                         <?php

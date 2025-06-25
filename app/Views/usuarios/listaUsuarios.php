@@ -21,7 +21,7 @@ $count = count($list);
     <section class="content pt-4">
         <div class="container-fluid">
             <div class="col-md-12">
-                <div class="card card-outline card-primary">
+                <div class="card card-outline card-success">
                     <div class="card-body">
                         <h3>Usuarios</h3>
                         <hr>
@@ -83,11 +83,9 @@ $count = count($list);
                             } ?>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div class="row justify-content-end">
-                            <div class="my-2">
-                                <a class='btn btn-primary btn-block' href="<?php echo $baseUrl ?>cadastrar-usuario">Cadastrar Usuario <i class="fa fa-plus ml-2"></i></a>
-                            </div>
+                    <div class="card-footer p-2">
+                        <div class="w-100">
+                            <a class='btn btn-success btn-block' href="<?php echo $baseUrl ?>cadastrar-usuario">Cadastrar Usuario <i class="fa fa-plus ml-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -183,7 +181,7 @@ $count = count($list);
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer p-2">
                                 <input type="hidden" id="AcaoEditar" name="Acao" value="update">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                 <button type="submit" class="btn btn-success">Salvar Alterações</button>

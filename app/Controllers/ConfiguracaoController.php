@@ -37,7 +37,7 @@ class ConfiguracaoController extends Actions
             header('Content-type: application/json');
             echo json_encode($data);
         } catch (Exception $e) {
-            sendTelegramMessage($e);
+            //sendTelegramMessage($e);
         } 
     }
 }

@@ -2,12 +2,8 @@
 $baseDir = dirname(__FILE__);
 include $baseDir . "/../../utils/Database.php";
 
-global $pais;
-
-$pais = $IgPais;
-
-$idioma = $pais == 1 ? 'pt-BR' : 'en-US';
-$moeda = $pais == 1 ? 'BRL' : 'USD';
+$idioma = 'pt-BR';
+$moeda = 'BRL';
 
 $fmt = new NumberFormatter($idioma, NumberFormatter::CURRENCY); 
 

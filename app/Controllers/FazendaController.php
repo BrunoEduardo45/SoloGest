@@ -1,13 +1,13 @@
 <?php
 
-global $tabela; $tabela = 'producao';
-global $sigla; $sigla = 'prod';
+global $tabela; $tabela = 'fazendas';
+global $sigla; $sigla = 'faz';
 
-class ProducaoController extends Actions
+class FazendaController extends Actions
 {
     public function Listar()
     {
-        loadView('gestaoProducao', "gestaoProducao", []);
+        loadView('listaFazendas', "fazendas", []);
     }
 
     public function Cadastrar()
