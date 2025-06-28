@@ -5,68 +5,140 @@
                 <div class="card card-outline card-success">
                     <form id="formPedido" method="post">
                         <div class="card-body">
-                            <h3>Cadastro de Pedidos</h3>
+                            <h3>Cadastro de Pedido</h3>
                             <hr>
                             <div class="row">
                                 <input type="hidden" id="id" name="id">
-                                <div class="col-lg-8">
+
+                                <!-- Cliente -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="exemplo">Exemplo</label>
-                                        <input type="text" class="form-control" id="exemplo" name="exemplo" required>
+                                        <label for="ped_cliente_id">Cliente</label>
+                                        <select name="ped_cliente_id" id="ped_cliente_id" class="form-control" required>
+                                            <option value="">Selecione o Cliente</option>
+                                            <?php
+                                            // Consultar os clientes cadastrados
+                                            $clientes = selecionarDoBanco('clientes', '*', '', [], []);
+                                            if (count($clientes) > 0) {
+                                                foreach ($clientes as $cliente) {
+                                                    echo '<option value="' . $cliente['cli_id'] . '">' . $cliente['cli_nome'] . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
-                                    <div class="form-group mt-2">
-                                        <label class="form-label" for="cadastro"></label>
-                                        <button type="submit" id="cadastro" name="cadastro" class="btn btn-success btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
+                                <!-- Produto -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="ped_produto_id">Produto</label>
+                                        <select name="ped_produto_id" id="ped_produto_id" class="form-control" required>
+                                            <option value="">Selecione o Produto</option>
+                                            <?php
+                                            // Consultar os produtos cadastrados
+                                            $produtos = selecionarDoBanco('produtos', '*', '', [], []);
+                                            if (count($produtos) > 0) {
+                                                foreach ($produtos as $produto) {
+                                                    echo '<option value="' . $produto['prod_id'] . '">' . $produto['prod_nome'] . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group mt-2">
-                                        <label class="form-label" for="limpar"></label>
+
+                                <!-- Quantidade -->
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="ped_quantidade">Quantidade</label>
+                                        <input type="number" class="form-control" id="ped_quantidade" name="ped_quantidade" required>
+                                    </div>
+                                </div>
+
+                                <!-- Valor Total -->
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="ped_valor_total">Valor Total</label>
+                                        <input type="number" class="form-control" id="ped_valor_total" name="ped_valor_total" required>
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="ped_status">Status</label>
+                                        <select name="ped_status" id="ped_status" class="form-control">
+                                            <option value="1">Em andamento</option>
+                                            <option value="2">Finalizado</option>
+                                            <option value="0">Cancelado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group m-0 mt-2">
                                         <button type="reset" id="limpar" name="limpar" class="btn btn-warning btn-block">Limpar<i class="fa fa-eraser ml-2"></i></button>
                                     </div>
                                 </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="form-group m-0 mt-2">
+                                        <button type="submit" id="cadastro" name="cadastro" class="btn btn-success btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
 
+            <!-- Tabela de Pedidos Cadastrados -->
             <div class="col-md-12">
                 <div class="card card-outline card-success">
                     <div class="card-body">
-                        <br>
                         <h3>Pedidos Cadastrados</h3>
                         <hr>
                         <?php
-
-                        // $list = selecionarDoBanco('grupos', '*', '', [], ['inner join usuarios on usu_id = gru_responsavel_tecnico']);
-                        // $count = count($list);
-
-                        $count = '';
-                        $list = [];
-
-                        if ($count > 0) { ?>
-
+                        // Consultar os pedidos cadastrados
+                        $pedidos = selecionarDoBanco('pedidos', '*', '', [], [
+                            'inner join clientes on pedidos.ped_cliente_id = clientes.cli_id',
+                            'inner join produtos on pedidos.ped_produto_id = produtos.prod_id'
+                        ]);
+                        if (count($pedidos) > 0) { ?>
                             <div class="table-responsive">
                                 <table id="table" class="table table-hover table-sm w-100">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%">ID</th>
-                                            <th style="width: 70%">Exemplo</th>
-                                            <th style="width: 20%">Exemplo</th>
+                                            <th>ID</th>
+                                            <th>Cliente</th>
+                                            <th>Produto</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor Total</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="row_position">
-                                        <?php foreach ($list as $values) { ?>
+                                    <tbody>
+                                        <?php foreach ($pedidos as $pedido) { ?>
                                             <tr>
-                                                <td><?= $values['id'] ?></td>
-                                                <td><?= $values['exemplo'] ?></td>
+                                                <td><?= $pedido['ped_id'] ?></td>
+                                                <td><?= $pedido['cli_nome'] ?></td> <!-- Aqui pode ser o nome do cliente -->
+                                                <td><?= $pedido['prod_nome'] ?></td> <!-- Aqui pode ser o nome do produto -->
+                                                <td><?= $pedido['ped_quantidade'] ?></td>
+                                                <td><?= $pedido['ped_valor_total'] ?></td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-secondary editarBtn" data-id="<?= $values['id'] ?>" data-acao="editar"><i class="fas fa-pen-alt"></i></button>
-                                                    <button class="btn btn-sm btn-danger editarBtn" data-id="<?= $values['id'] ?>" data-acao="deletar"><i class="far fa-trash-alt"></i></button>
+                                                    <?= $pedido['ped_status'] == 1 ? 
+                                                        '<span class="badge badge-warning">Em andamento</span>' : 
+                                                        ($pedido['ped_status'] == 2 ? 
+                                                        '<span class="badge badge-success">Finalizado</span>' :
+                                                        '<span class="badge badge-danger">Cancelado</span>')
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-secondary editarBtn" data-id="<?= $pedido['ped_id'] ?>" data-acao="editar"><i class="fas fa-pen-alt"></i></button>
+                                                    <button class="btn btn-sm btn-danger editarBtn" data-id="<?= $pedido['ped_id'] ?>" data-acao="deletar"><i class="far fa-trash-alt"></i></button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -81,16 +153,22 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 </div>
+
 
 <script>
     $(document).ready(function() {
 
         function Dados() {
             return {
-                'ped_exemplo': $('#exemplo').val() ?? null,
+                'ped_cliente_id': $('#ped_cliente_id').val(),
+                'ped_produto_id': $('#ped_produto_id').val(),
+                'ped_quantidade': $('#ped_quantidade').val(),
+                'ped_valor_total': $('#ped_valor_total').val(),
+                'ped_status': $('#ped_status').val(),
             };
         }
 
@@ -130,8 +208,12 @@
                     },
                     type: "POST",
                     success: function(data) {
-                        $("#id").val(data.id);
-                        $("#exemplo").val(data.exemplo);
+                        $('#id').val(data.ped_id);
+                        $('#ped_cliente_id').val(data.ped_cliente_id);
+                        $('#ped_produto_id').val(data.ped_produto_id);
+                        $('#ped_quantidade').val(data.ped_quantidade);
+                        $('#ped_valor_total').val(data.ped_valor_total);
+                        $('#ped_status').val(data.ped_status);
 
                         $("#cadastro").attr('data-acao', 'atualizar');
                         $("#cadastro").text('Atualizar');
@@ -151,6 +233,7 @@
                 type: "POST",
                 url: url,
                 data: {
+                    id: $('#id').val(),
                     dados: Dados()
                 },
                 success: function(data) {

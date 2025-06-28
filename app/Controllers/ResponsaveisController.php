@@ -1,7 +1,7 @@
 <?php
 
 global $tabela; $tabela = 'responsaveis';
-global $sigla; $sigla = 'resp';
+global $sigla; $sigla = 'res';
 
 class ResponsaveisController extends Actions
 {
@@ -21,7 +21,7 @@ class ResponsaveisController extends Actions
     {
         global $tabela;
         global $sigla;
-        $id = (isset($_POST['id']) ? $_POST['id'] : "");
+        $id = $_POST['id'] ?? "";
         $dados = selecionarDoBanco($tabela, '*', $sigla . '_id = :id', [':id' => $id]);
         header('Content-type: application/json');
         echo json_encode($dados[0]);
@@ -31,9 +31,8 @@ class ResponsaveisController extends Actions
     {
         global $tabela;
         global $sigla;
-        $id = (isset($_POST['id']) ? $_POST['id'] : "");
+        $id = $_POST['id'] ?? "";
         $dados = $_POST['dados'];
-
         $where = $sigla . "_id = " . $id;
         atualizarNoBanco($tabela, $dados, $where);
     }
@@ -42,8 +41,7 @@ class ResponsaveisController extends Actions
     {
         global $tabela;
         global $sigla;
-        $id = (isset($_POST['id']) ? $_POST['id'] : "");
-
+        $id = $_POST['id'] ?? "";
         $where = $sigla . "_id = " . $id;
         deletarDoBanco($tabela, $where);
     }

@@ -1,6 +1,6 @@
 <?php
 
-global $tabela; $tabela = 'cliente';
+global $tabela; $tabela = 'clientes';
 global $sigla; $sigla = 'cli';
 
 class ClienteController extends Actions

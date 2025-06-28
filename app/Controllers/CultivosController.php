@@ -1,7 +1,7 @@
 <?php
 
 global $tabela; $tabela = 'cultivos';
-global $sigla; $sigla = 'cult';
+global $sigla; $sigla = 'cul';
 
 class CultivosController extends Actions
 {
@@ -14,14 +14,14 @@ class CultivosController extends Actions
     {
         global $tabela;
         $dados = $_POST['dados'];
-        inserirNoBanco($tabela, $dados);
+        inserirNoBanco($tabela, $dados);  // Inserir dados do cultivo
     }
 
     public function Editar()
     {
         global $tabela;
         global $sigla;
-        $id = (isset($_POST['id']) ? $_POST['id'] : "");
+        $id = $_POST['id'] ?? "";
         $dados = selecionarDoBanco($tabela, '*', $sigla . '_id = :id', [':id' => $id]);
         header('Content-type: application/json');
         echo json_encode($dados[0]);
@@ -31,9 +31,8 @@ class CultivosController extends Actions
     {
         global $tabela;
         global $sigla;
-        $id = (isset($_POST['id']) ? $_POST['id'] : "");
+        $id = $_POST['id'] ?? "";
         $dados = $_POST['dados'];
-
         $where = $sigla . "_id = " . $id;
         atualizarNoBanco($tabela, $dados, $where);
     }
@@ -42,8 +41,7 @@ class CultivosController extends Actions
     {
         global $tabela;
         global $sigla;
-        $id = (isset($_POST['id']) ? $_POST['id'] : "");
-
+        $id = $_POST['id'] ?? "";
         $where = $sigla . "_id = " . $id;
         deletarDoBanco($tabela, $where);
     }

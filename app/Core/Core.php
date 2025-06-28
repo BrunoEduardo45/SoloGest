@@ -29,10 +29,5 @@ Class Core
             }
         }
 
-        // if (!$routerFound) {
-        //     require_once $baseDir."NotFoundController.php";
-        //     $controller = new NotFoundController();
-        //     $controller->index();
-        // }
     }
 }

@@ -5,68 +5,116 @@
                 <div class="card card-outline card-success">
                     <form id="formCompra" method="post">
                         <div class="card-body">
-                            <h3>Cadastro de Compras</h3>
+                            <h3>Cadastro de Requisição de Compra</h3>
                             <hr>
                             <div class="row">
                                 <input type="hidden" id="id" name="id">
-                                <div class="col-lg-8">
+
+                                <!-- Produto -->
+                                <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label for="exemplo">Exemplo</label>
-                                        <input type="text" class="form-control" id="exemplo" name="exemplo" required>
+                                        <label for="comp_produto_id">Produto</label>
+                                        <select name="comp_produto_id" id="comp_produto_id" class="form-control" required>
+                                            <option value="">Selecione o Produto</option>
+                                            <?php
+                                            // Consultar os produtos cadastrados
+                                            $produtos = selecionarDoBanco('produtos', '*', '', [], []);
+                                            if (count($produtos) > 0) {
+                                                foreach ($produtos as $produto) {
+                                                    echo '<option value="' . $produto['prod_id'] . '">' . $produto['prod_nome'] . '</option>';
+                                                }
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
-                                    <div class="form-group mt-2">
-                                        <label class="form-label" for="cadastro"></label>
-                                        <button type="submit" id="cadastro" name="cadastro" class="btn btn-success btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
+                                <!-- Quantidade -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="comp_quantidade">Quantidade</label>
+                                        <input type="number" class="form-control" id="comp_quantidade" name="comp_quantidade" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group mt-2">
-                                        <label class="form-label" for="limpar"></label>
+
+                                <!-- Valor Total -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="comp_valor_total">Valor Total</label>
+                                        <input type="number" class="form-control" id="comp_valor_total" name="comp_valor_total" required>
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="comp_status">Status</label>
+                                        <select name="comp_status" id="comp_status" class="form-control">
+                                            <option value="1">Pendente</option>
+                                            <option value="2">Aprovado</option>
+                                            <option value="0">Rejeitado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group m-0 mt-2">
                                         <button type="reset" id="limpar" name="limpar" class="btn btn-warning btn-block">Limpar<i class="fa fa-eraser ml-2"></i></button>
                                     </div>
                                 </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="form-group m-0 mt-2">
+                                        <button type="submit" id="cadastro" name="cadastro" class="btn btn-success btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
 
+            <!-- Tabela de Requisições de Compras Cadastradas -->
             <div class="col-md-12">
                 <div class="card card-outline card-success">
                     <div class="card-body">
-                        <br>
-                        <h3>Compras Cadastradas</h3>
+                        <h3>Requisições de Compras Cadastradas</h3>
                         <hr>
                         <?php
-
-                        // $list = selecionarDoBanco('grupos', '*', '', [], ['inner join usuarios on usu_id = gru_responsavel_tecnico']);
-                        // $count = count($list);
-
-                        $count = '';
-                        $list = [];
-
-                        if ($count > 0) { ?>
-
+                        // Consultar as requisições de compras cadastradas
+                        $requisicoes = selecionarDoBanco('compras', '*', '', [], []);
+                        if (count($requisicoes) > 0) { ?>
                             <div class="table-responsive">
                                 <table id="table" class="table table-hover table-sm w-100">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%">ID</th>
-                                            <th style="width: 70%">Exemplo</th>
-                                            <th style="width: 20%">Exemplo</th>
+                                            <th>ID</th>
+                                            <th>Produto</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor Total</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="row_position">
-                                        <?php foreach ($list as $values) { ?>
+                                    <tbody>
+                                        <?php foreach ($requisicoes as $requisicao) { ?>
                                             <tr>
-                                                <td><?= $values['id'] ?></td>
-                                                <td><?= $values['exemplo'] ?></td>
+                                                <td><?= $requisicao['comp_id'] ?></td>
+                                                <td><?= $requisicao['comp_produto_id'] ?></td> <!-- Aqui pode ser o nome do produto -->
+                                                <td><?= $requisicao['comp_quantidade'] ?></td>
+                                                <td><?= $requisicao['comp_valor_total'] ?></td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-secondary editarBtn" data-id="<?= $values['id'] ?>" data-acao="editar"><i class="fas fa-pen-alt"></i></button>
-                                                    <button class="btn btn-sm btn-danger editarBtn" data-id="<?= $values['id'] ?>" data-acao="deletar"><i class="far fa-trash-alt"></i></button>
+                                                    <?= $requisicao['comp_status'] == 1 ? 
+                                                        '<span class="badge badge-warning">Pendente</span>' : 
+                                                        ($requisicao['comp_status'] == 2 ? 
+                                                        '<span class="badge badge-success">Aprovado</span>' :
+                                                        '<span class="badge badge-danger">Rejeitado</span>')
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-secondary editarBtn" data-id="<?= $requisicao['comp_id'] ?>" data-acao="editar"><i class="fas fa-pen-alt"></i></button>
+                                                    <button class="btn btn-sm btn-danger editarBtn" data-id="<?= $requisicao['comp_id'] ?>" data-acao="deletar"><i class="far fa-trash-alt"></i></button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -75,12 +123,13 @@
                             </div>
                         <?php
                         } else {
-                            echo 'Nenhum compra cadastrado';
+                            echo 'Nenhuma requisição de compra cadastrada';
                         }
                         ?>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 </div>
@@ -90,7 +139,10 @@
 
         function Dados() {
             return {
-                'ped_exemplo': $('#exemplo').val() ?? null,
+                'comp_produto_id': $('#comp_produto_id').val(),
+                'comp_quantidade': $('#comp_quantidade').val(),
+                'comp_valor_total': $('#comp_valor_total').val(),
+                'comp_status': $('#comp_status').val()
             };
         }
 
@@ -130,8 +182,11 @@
                     },
                     type: "POST",
                     success: function(data) {
-                        $("#id").val(data.id);
-                        $("#exemplo").val(data.exemplo);
+                        $('#id').val(data.comp_id);
+                        $('#comp_produto_id').val(data.comp_produto_id);
+                        $('#comp_quantidade').val(data.comp_quantidade);
+                        $('#comp_valor_total').val(data.comp_valor_total);
+                        $('#comp_status').val(data.comp_status);
 
                         $("#cadastro").attr('data-acao', 'atualizar');
                         $("#cadastro").text('Atualizar');
@@ -151,6 +206,7 @@
                 type: "POST",
                 url: url,
                 data: {
+                    id: $('#id').val(),
                     dados: Dados()
                 },
                 success: function(data) {

@@ -1,18 +1,59 @@
+<?php
+$responsaveis = selecionarDoBanco('responsaveis');
+?>
+
 <div class="content-wrapper">
     <section class="content pt-4">
         <div class="container-fluid">
             <div class="col-md-12">
                 <div class="card card-outline card-success">
-                    <form id="formResponsaveis" method="post">
+                    <form id="formResponsavel" method="post">
                         <div class="card-body">
-                            <h3>Cadastro de Responsaveis / Técnicos</h3>
+                            <h3>Cadastro de Responsável Técnico</h3>
                             <hr>
                             <div class="row">
                                 <input type="hidden" id="id" name="id">
-                                <div class="col-lg-8">
+
+                                <!-- Nome do Responsável -->
+                                <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="exemplo">Exemplo</label>
-                                        <input type="text" class="form-control" id="exemplo" name="exemplo" required>
+                                        <label for="res_nome">Nome</label>
+                                        <input type="text" class="form-control" id="res_nome" name="res_nome" required>
+                                    </div>
+                                </div>
+
+                                <!-- E-mail -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="res_email">E-mail</label>
+                                        <input type="email" class="form-control" id="res_email" name="res_email">
+                                    </div>
+                                </div>
+
+                                <!-- Telefone -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="res_telefone">Telefone</label>
+                                        <input type="text" class="form-control" id="res_telefone" name="res_telefone">
+                                    </div>
+                                </div>
+
+                                <!-- Cargo -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="res_cargo">Cargo</label>
+                                        <input type="text" class="form-control" id="res_cargo" name="res_cargo">
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="res_status">Status</label>
+                                        <select name="res_status" id="res_status" class="form-control">
+                                            <option value="1">Ativo</option>
+                                            <option value="0">Inativo</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -22,6 +63,7 @@
                                         <button type="submit" id="cadastro" name="cadastro" class="btn btn-success btn-block" data-acao="salvar">Cadastrar <i class="fa fa-plus ml-2"></i></button>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-2">
                                     <div class="form-group mt-2">
                                         <label class="form-label" for="limpar"></label>
@@ -34,39 +76,41 @@
                 </div>
             </div>
 
+            <!-- Tabela de Responsáveis Cadastrados -->
             <div class="col-md-12">
                 <div class="card card-outline card-success">
                     <div class="card-body">
-                        <br>
-                        <h3>Responsaveis / Técnicos Cadastrados</h3>
+                        <h3>Responsáveis Cadastrados</h3>
                         <hr>
                         <?php
-
-                        // $list = selecionarDoBanco('grupos', '*', '', [], ['inner join usuarios on usu_id = gru_responsavel_tecnico']);
-                        // $count = count($list);
-
-                        $count = '';
-                        $list = [];
-
-                        if ($count > 0) { ?>
-
+                        // Verificar se há dados
+                        if (count($responsaveis) > 0) { ?>
                             <div class="table-responsive">
                                 <table id="table" class="table table-hover table-sm w-100">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%">ID</th>
-                                            <th style="width: 70%">Exemplo</th>
-                                            <th style="width: 20%">Exemplo</th>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Telefone</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="row_position">
-                                        <?php foreach ($list as $values) { ?>
+                                    <tbody>
+                                        <?php foreach ($responsaveis as $responsavel) { ?>
                                             <tr>
-                                                <td><?= $values['id'] ?></td>
-                                                <td><?= $values['exemplo'] ?></td>
+                                                <td><?= $responsavel['res_id'] ?></td>
+                                                <td><?= $responsavel['res_nome'] ?></td>
+                                                <td><?= $responsavel['res_telefone'] ?></td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-secondary editarBtn" data-id="<?= $values['id'] ?>" data-acao="editar"><i class="fas fa-pen-alt"></i></button>
-                                                    <button class="btn btn-sm btn-danger editarBtn" data-id="<?= $values['id'] ?>" data-acao="deletar"><i class="far fa-trash-alt"></i></button>
+                                                    <?= $responsavel['res_status'] == 1 ? 
+                                                        '<span class="badge badge-success">Ativo</span>' : 
+                                                        '<span class="badge badge-danger">Inativo</span>' 
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-secondary editarBtn" data-id="<?= $responsavel['res_id'] ?>" data-acao="editar"><i class="fas fa-pen-alt"></i></button>
+                                                    <button class="btn btn-sm btn-danger editarBtn" data-id="<?= $responsavel['res_id'] ?>" data-acao="deletar"><i class="far fa-trash-alt"></i></button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -75,32 +119,36 @@
                             </div>
                         <?php
                         } else {
-                            echo 'Nenhum responsaveis cadastrado';
+                            echo 'Nenhum responsável cadastrado';
                         }
                         ?>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 </div>
-
 <script>
     $(document).ready(function() {
 
         function Dados() {
             return {
-                'ped_exemplo': $('#exemplo').val() ?? null,
+                'res_nome': $('#res_nome').val(),
+                'res_email': $('#res_email').val(),
+                'res_telefone': $('#res_telefone').val(),
+                'res_cargo': $('#res_cargo').val(),
+                'res_status': $('#res_status').val()
             };
         }
 
+        // Função para editar
         $('.editarBtn').click(function() {
             event.preventDefault();
             var id = $(this).data('id');
             var acao = $(this).data('acao');
 
             if (acao == 'deletar') {
-
                 Notiflix.Confirm.Show(
                     'Deletar!',
                     'Tem certeza que deseja deletar?',
@@ -130,8 +178,12 @@
                     },
                     type: "POST",
                     success: function(data) {
-                        $("#id").val(data.id);
-                        $("#exemplo").val(data.exemplo);
+                        $("#id").val(data.res_id);
+                        $("#res_nome").val(data.res_nome);
+                        $("#res_email").val(data.res_email);
+                        $("#res_telefone").val(data.res_telefone);
+                        $("#res_cargo").val(data.res_cargo);
+                        $("#res_status").val(data.res_status);
 
                         $("#cadastro").attr('data-acao', 'atualizar');
                         $("#cadastro").text('Atualizar');
@@ -140,9 +192,10 @@
             }
         });
 
-        $("#formResponsaveis").submit(function(e) {
+        // Envio do formulário
+        $("#formResponsavel").submit(function(e) {
             e.preventDefault();
-            
+
             Notiflix.Loading.Pulse('Carregando...');
             var acao = $('#cadastro').data('acao');
             var url = acao === "salvar" ? "/cadastrar-responsaveis" : "/atualizar-responsaveis";
@@ -151,6 +204,7 @@
                 type: "POST",
                 url: url,
                 data: {
+                    id: $('#id').val(),
                     dados: Dados()
                 },
                 success: function(data) {
@@ -162,7 +216,7 @@
                         }, 2000);
                     } else if (data.success != '' && acao != "salvar") {
                         Notiflix.Loading.Remove();
-                        Notiflix.Notify.Success('Atualizada com Sucesso!');
+                        Notiflix.Notify.Success('Atualizado com Sucesso!');
                         setTimeout(function() {
                             location.reload();
                         }, 2000);
@@ -176,6 +230,5 @@
                 }
             });
         });
-
     });
 </script>
